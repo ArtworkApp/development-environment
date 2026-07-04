@@ -1,0 +1,44 @@
+{
+  "name": "Artwork Platform Multi-Repo Workspace",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspace/development-environment",
+
+  // Mount neighboring repository folders into the Dev Container workspace environment
+  "mounts": [
+    "source=${localWorkspaceFolder}/../be-nestjs,target=/workspace/be-nestjs,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/../fe-nextjs,target=/workspace/fe-nextjs,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/../fe-react-native,target=/workspace/fe-react-native,type=bind,consistency=cached"
+  ],
+
+  // Auto-install productive, full-stack VS Code extensions inside the container
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "firsttris.vscode-jest-runner"
+      ]
+    }
+  },
+
+  // Forward application and local infrastructure service ports to your host laptop
+  "forwardPorts": [
+    3000,
+    3001,
+    5432,
+    9000,
+    9001
+  ],
+  "portsAttributes": {
+    "3000": { "label": "Next.js Web Frontend" },
+    "3001": { "label": "NestJS Backend API" },
+    "5432": { "label": "Local PostgreSQL (Aurora Substitute)" },
+    "9000": { "label": "MinIO S3 API Endpoint" },
+    "9001": { "label": "MinIO Admin Web Dashboard" }
+  },
+
+  // Ensures global CLI tools are available inside the workspace shell environment
+  "postCreateCommand": "npm install -g @nestjs/cli"
+}
