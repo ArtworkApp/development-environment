@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "name": "⚙️ Environment Configuration",
+      "path": "."
+    },
+    {
+      "name": "🚀 Backend (NestJS)",
+      "path": "../be-nestjs"
+    },
+    {
+      "name": "🌐 Web Frontend (Next.js)",
+      "path": "../fe-nextjs"
+    },
+    {
+      "name": "📱 Mobile App (React Native)",
+      "path": "../fe-react-native"
+    }
+  ],
+  "settings": {
+    "devcontainers.enforceWorkspaceFolderWorkspaceSettings": true
+  }
+}
