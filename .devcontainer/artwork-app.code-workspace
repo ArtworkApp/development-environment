@@ -18,7 +18,8 @@
     }
   ],
   "settings": {
-    "devcontainers.enforceWorkspaceFolderWorkspaceSettings": true
+    "devcontainers.enforceWorkspaceFolderWorkspaceSettings": true,
+    "devcontainers.containerWorkspaceFolder": "/workspace/development-environment"
   },
   "tasks": {
     "version": "2.0.0",
