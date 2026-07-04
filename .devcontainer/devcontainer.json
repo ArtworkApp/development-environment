@@ -1,17 +1,11 @@
 {
-  "name": "Artwork Platform Multi-Repo Workspace",
+  "name": "Artwork Platform Single Container Workspace",
   "dockerComposeFile": "docker-compose.yml",
   "service": "workspace",
-  "workspaceFolder": "/workspace/development-environment",
+  
+  // Forces the container terminal to drop you right into the main root folder
+  "workspaceFolder": "/workspace",
 
-  // Mount neighboring repository folders into the Dev Container workspace environment
-  "mounts": [
-    "source=${localWorkspaceFolder}/../be-nestjs,target=/workspace/be-nestjs,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/../fe-nextjs,target=/workspace/fe-nextjs,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/../fe-react-native,target=/workspace/fe-react-native,type=bind,consistency=cached"
-  ],
-
-  // Auto-install productive, full-stack VS Code extensions inside the container
   "customizations": {
     "vscode": {
       "extensions": [
@@ -24,8 +18,6 @@
       ]
     }
   },
-
-  // Forward application, mobile bundlers, and local infrastructure service ports to your host laptop
   "forwardPorts": [
     3000,
     3001,
@@ -42,7 +34,5 @@
     "9000": { "label": "MinIO S3 API Endpoint" },
     "9001": { "label": "MinIO Admin Web Dashboard" }
   },
-
-  // Optimized execution to minimize final container image storage size
-  "postCreateCommand": "sudo npm install -g @nestjs/cli && sudo npm cache clean --force"
+  "postCreateCommand": "sudo npm install -g @nestjs/cli && npm cache clean --force"
 }

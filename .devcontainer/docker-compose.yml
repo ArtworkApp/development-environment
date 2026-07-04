@@ -4,14 +4,13 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ..:/workspace/development-environment:cached
+      - ..:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
     networks:
       - artwork-app-network
     depends_on:
       - postgres
       - minio
-
 
   postgres:
     image: postgres:16-alpine
