@@ -18,16 +18,19 @@
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-azuretools.vscode-docker",
-        "firsttris.vscode-jest-runner"
+        "firsttris.vscode-jest-runner",
+        "dsznajder.es7-react-js-snippets",
+        "irongeek.vscode-nestjs-snippets"
       ]
     }
   },
 
-  // Forward application and local infrastructure service ports to your host laptop
+  // Forward application, mobile bundlers, and local infrastructure service ports to your host laptop
   "forwardPorts": [
     3000,
     3001,
     5432,
+    8081,
     9000,
     9001
   ],
@@ -35,10 +38,11 @@
     "3000": { "label": "Next.js Web Frontend" },
     "3001": { "label": "NestJS Backend API" },
     "5432": { "label": "Local PostgreSQL (Aurora Substitute)" },
+    "8081": { "label": "React Native Metro Bundler" },
     "9000": { "label": "MinIO S3 API Endpoint" },
     "9001": { "label": "MinIO Admin Web Dashboard" }
   },
 
-  // Ensures global CLI tools are available inside the workspace shell environment
-  "postCreateCommand": "npm install -g @nestjs/cli"
+  // Optimized execution to minimize final container image storage size
+  "postCreateCommand": "npm install -g @nestjs/cli && npm cache clean --force"
 }
