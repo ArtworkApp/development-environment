@@ -1,10 +1,17 @@
 services:
   workspace:
+    # Uses a valid, pre-built Microsoft image containing Node.js and global development tools
     image: ://microsoft.com
     volumes:
       - ..:/workspace/development-environment:cached
+    # Keeps the container running silently in the background
     command: /bin/sh -c "while sleep 1000; do :; done"
-    network_mode: service:postgres
+    # Connects workspace directly to the database and storage services
+    networks:
+      - app-network
+    depends_on:
+      - postgres
+      - minio
 
   postgres:
     image: postgres:16-alpine
@@ -17,6 +24,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
 
   minio:
     image: minio/minio:latest
@@ -30,6 +39,12 @@ services:
     command: server /data --console-address ":9001"
     volumes:
       - minio_data:/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   postgres_data:
