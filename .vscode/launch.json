@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🐛 Debug NestJS Backend",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true,
+      "localRoot": "/workspace/be-nestjs",
+      "remoteRoot": "/workspace/be-nestjs"
+    },
+    {
+      "name": "🌐 Debug Next.js (Chrome)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/fe-nextjs"
+    },
+    {
+      "name": "📱 Debug Mobile (React Native)",
+      "type": "reactnative",
+      "request": "attach",
+      "cwd": "${workspaceFolder}/fe-react-native"
+    }
+  ]
+}

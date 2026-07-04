@@ -1,0 +1,38 @@
+{
+  "name": "Artwork Platform Single Container Workspace",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  
+  // Forces the container terminal to drop you right into the main root folder
+  "workspaceFolder": "/workspace",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "firsttris.vscode-jest-runner",
+        "dsznajder.es7-react-js-snippets",
+        "irongeek.vscode-nestjs-snippets"
+      ]
+    }
+  },
+  "forwardPorts": [
+    3000,
+    3001,
+    5432,
+    8081,
+    9000,
+    9001
+  ],
+  "portsAttributes": {
+    "3000": { "label": "Next.js Web Frontend" },
+    "3001": { "label": "NestJS Backend API" },
+    "5432": { "label": "Local PostgreSQL (Aurora Substitute)" },
+    "8081": { "label": "React Native Metro Bundler" },
+    "9000": { "label": "MinIO S3 API Endpoint" },
+    "9001": { "label": "MinIO Admin Web Dashboard" }
+  },
+  "postCreateCommand": "sudo npm install -g @nestjs/cli && npm cache clean --force"
+}

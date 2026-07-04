@@ -1,0 +1,59 @@
+{
+  "folders": [
+    {
+      "name": "⚙️ Environment Configuration",
+      "path": "."
+    },
+    {
+      "name": "🚀 Backend (NestJS)",
+      "path": "../be-nestjs"
+    },
+    {
+      "name": "🌐 Web Frontend (Next.js)",
+      "path": "../fe-nextjs"
+    },
+    {
+      "name": "📱 Mobile App (React Native)",
+      "path": "../fe-react-native"
+    }
+  ],
+  "settings": {
+    "devcontainers.enforceWorkspaceFolderWorkspaceSettings": true,
+    "devcontainers.containerWorkspaceFolder": "/workspace/development-environment"
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Start NestJS Backend",
+        "type": "shell",
+        "command": "cd /workspace/be-nestjs && npm run start:dev",
+        "isBackground": true,
+        "presentation": { "group": "artwork-platform", "panel": "new", "label": "NestJS API" }
+      },
+      {
+        "label": "Start Next.js Frontend",
+        "type": "shell",
+        "command": "cd /workspace/fe-nextjs && npm run dev",
+        "isBackground": true,
+        "presentation": { "group": "artwork-platform", "panel": "new", "label": "Next.js Web" }
+      },
+      {
+        "label": "Start React Native Metro",
+        "type": "shell",
+        "command": "cd /workspace/fe-react-native && npm start",
+        "isBackground": true,
+        "presentation": { "group": "artwork-platform", "panel": "new", "label": "Metro Bundler" }
+      },
+      {
+        "label": "🚀 Launch Full Stack Platform",
+        "dependsOn": [
+          "Start NestJS Backend",
+          "Start Next.js Frontend",
+          "Start React Native Metro"
+        ],
+        "group": { "kind": "build", "isDefault": true }
+      }
+    ]
+  }
+}
