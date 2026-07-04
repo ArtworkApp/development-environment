@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Full Stack Platform",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "🚀 Launch Full Stack Platform",
+      "program": "${workspaceFolder}/package.json" // Placeholder to trigger task runner
+    }
+  ]
+}
