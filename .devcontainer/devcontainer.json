@@ -44,5 +44,5 @@
   },
 
   // Optimized execution to minimize final container image storage size
-  "postCreateCommand": "npm install -g @nestjs/cli && npm cache clean --force"
+  "postCreateCommand": "sudo npm install -g @nestjs/cli && sudo npm cache clean --force"
 }
