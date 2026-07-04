@@ -1,66 +1,86 @@
-# 💻 Artwork App Multi-Repo Workspace
+# 💻 Artwork Platform Unified Workspace
 
-Welcome to the centralized development environment for the Artwork Platform. This workspace orchestrates the full-stack ecosystem by linking your frontend, backend, mobile application, and local infrastructure dependencies into a single, unified sandbox environment using **VS Code Dev Containers** and **Docker Compose**.
+Welcome to the centralized development environment for the Artwork Platform. This workspace orchestrates our full-stack ecosystem by linking your frontend, backend, mobile application, and local infrastructure dependencies into a single, unified sandbox environment using **VS Code Dev Containers** and **Docker Compose**.
 
-## 🏗️ Workspace Architecture
-When initialized, the environment mounts and exposes four core sub-repositories:
-*   `⚙️ Environment Configuration` (This configuration root)
-*   `🚀 Backend (NestJS)` (Located at `../be-nestjs`)
-*   `🌐 Web Frontend (Next.js)` (Located at `../fe-nextjs`)
-*   `📱 Mobile App (React Native)` (Located at `../fe-react-native`)
+By opening the parent container root folder directly, all files across your microservices remain fully visible, writable, and perfectly synchronized in real-time.
+
+---
+
+## 🏗️ Workspace Directory Layout
+Our development framework sits inside a single parent container directory structured as follows on your local Mac:
+
+```text
+📁 artworkapp/                   <-- OPEN THIS PARENT DIRECTORY IN VS CODE
+├── 🔗 .devcontainer/            --> development-environment/.devcontainer/
+├── 🔗 .vscode/                  --> development-environment/.vscode/
+├── 📁 be-nestjs/                --> (Independent Git Repository)
+├── 📁 development-environment/  --> (True home of infrastructure configuration files)
+├── 📁 fe-nextjs/                --> (Independent Git Repository)
+└── 📁 fe-react-native/          --> (Independent Git Repository)
+```
 
 ---
 
 ## 🛠️ Prerequisites
-Before starting, ensure your host machine has the following tools installed and running:
-1.  **Docker Desktop** (Ensure the engine is active)
+Before initializing the environment, ensure your host computer has the following tools installed and active:
+1.  **Docker Desktop** (Ensure the engine is running)
 2.  **Visual Studio Code**
 3.  **Dev Containers Extension** by Microsoft (Extension ID: `ms-vscode-remote.remote-containers`)
 
 ---
 
-## 🚀 How to Open the Workspace (Step-by-Step)
+## 🚀 Initial Machine Setup (First-Time Onboarding Only)
 
-> ⚠️ **IMPORTANT:** Because of how VS Code initializes multi-root folder maps inside Docker volumes, opening the `.code-workspace` file directly from your host machine will cause a blank window initialization trap. You **must** follow the two-step boot sequence below.
+Because our global environments (`.devcontainer` and `.vscode`) are managed inside the `development-environment` repository, you must create relative shortcuts (symbolic links) so VS Code and Docker can trace them from the project root.
 
-### Step 1: Initialize the Container Infrastructure First
-1. Launch a completely fresh, empty window of **VS Code**.
-2. Go to the top menu and select **File > Open Folder...**
-3. Select only the **`development-environment`** repository folder directly.
-4. Once the project files load locally, open the VS Code Command Palette (`Cmd + Shift + P` on macOS or `Ctrl + Shift + P` on Windows/Linux).
-5. Type and select: **`Dev Containers: Reopen in Container`**.
-6. Wait for Docker to pull the custom Ubuntu-Node image layers, configure your private internal network mesh, and complete the automatic background configuration scripts.
+Open your local Mac terminal application and run this quick initialization sequence:
 
-### Step 2: Load the Multi-Root Sidebar Map
-Once your integrated terminal prompt shifts to `vscode ➜ /workspace/development-environment`, your core container environment is running smoothly. Now you can bring in your sibling code repositories:
+```bash
+# 1. Navigate into your workspace root folder
+cd /Users/changhyunlee/code/artworkapp
 
-1. Inside that same active container window, go to the top menu and select **File > Open Workspace from File...**
-2. Select the **`artwork-app.code-workspace`** file.
-3. The VS Code interface will refresh immediately.
+# 2. Build the live portal link for your container configurations
+ln -s development-environment/.devcontainer .devcontainer
 
-Your sidebar file tree explorer will now render all four distinct repository modules simultaneously, running with full read/write synchronization inside your live container environment.
+# 3. Build the live portal link for your individual workspace tools
+mkdir -p .vscode
+ln -s ../development-environment/.vscode/launch.json .vscode/launch.json
+ln -s ../development-environment/.vscode/tasks.json .vscode/tasks.json
+```
 
 ---
 
-## ⚙️ Orchestrating Your Services (Launch Tasks)
+## 🏁 How to Open the Dev Container
 
-You do not need to manually change directories (`cd`) or spin up multiple terminal splits to run your microservices. The workspace includes an automated compilation task layout.
+1. Launch **VS Code**.
+2. Go to the top menu bar and select **File > Open Folder...**
+3. Select the absolute top-level parent folder: `/Users/changhyunlee/code/artworkapp`.
+4. Open the VS Code Command Palette (**`Cmd + Shift + P`** on macOS or `Ctrl + Shift + P` on Windows/Linux).
+5. Type and select: **`Dev Containers: Reopen in Container`**.
+
+The container engine will build your environment in a single phase. When the window finishes loading, your sidebar file explorer will render your full multi-repo file trees instantly with absolute read/write capabilities.
+
+---
+
+## ⚙️ Orchestrating Your Services (Launch Automation)
+
+You do not need to manually change directories (`cd`) or split multiple terminal screens to run your microservices. The workspace features built-in orchestration macros.
 
 ### How to boot the full-stack platform:
-1. Press `Cmd + Shift + P` (or `Ctrl + Shift + P`) to open the Command Palette.
-2. Type and select: **`Tasks: Run Task`**.
-3. Choose: **`🚀 Launch Full Stack Platform`**.
+1. Ensure your Dev Container environment has completed its boot sequence.
+2. Press **`Cmd + Shift + B`** simultaneously on your Mac keyboard.
+   *(Alternative: Open the Command Palette -> select **Tasks: Run Task** -> click **🚀 Launch Full Stack Platform**)*
 
-VS Code will instantly spin up three distinct, labeled background terminal panel tabs side-by-side inside your container workspace dashboard:
-*   `NestJS API` — Booting your backend logic server
-*   `Next.js Web` — Compiling your web frontend routing layers
-*   `Metro Bundler` — Launching your React Native packaging hub on port `8081`
+VS Code will automatically open three side-by-side terminal tabs inside a single consolidated panel dashboard:
+*   `NestJS API` — Booting your backend endpoints on `http://localhost:3001`
+*   `Next.js Web` — Compiling your web frontend interface layers on `http://localhost:3000`
+*   `Metro Bundler` — Launching your React Native mobile hub on port `8081`
 
 ---
 
 ## 🛜 Local Infrastructure Endpoints
 
-Once your environment is active, the following local services are automatically forwarded from the container network mesh directly to your host machine's browser interface:
+The following local background services are automatically forwarded from the container network mesh directly to your host machine's browser interface:
 
 | Port | Service Component | Internal Routing Hostname |
 | :--- | :--- | :--- |
@@ -70,4 +90,3 @@ Once your environment is active, the following local services are automatically 
 | `8081` | React Native Metro Bundler | `http://localhost:8081` |
 | `9000` | MinIO Object Storage S3 API | Use hostname `minio` inside code |
 | `9001` | MinIO Admin Web Console Dashboard | `http://localhost:9001` |
-
