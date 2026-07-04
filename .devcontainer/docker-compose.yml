@@ -1,12 +1,9 @@
 services:
   workspace:
-    # Uses a valid, pre-built Microsoft image containing Node.js and global development tools
-    image: ://microsoft.com
+    image: mcr.microsoft.com/devcontainers/base:ubuntu
     volumes:
       - ..:/workspace/development-environment:cached
-    # Keeps the container running silently in the background
     command: /bin/sh -c "while sleep 1000; do :; done"
-    # Connects workspace directly to the database and storage services
     networks:
       - artwork-app-network
     depends_on:
