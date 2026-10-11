@@ -1,8 +1,9 @@
 services:
   workspace:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: devcontainer-workspace:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     volumes:
       - ..:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
