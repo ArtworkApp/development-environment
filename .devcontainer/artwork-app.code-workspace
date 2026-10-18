@@ -41,7 +41,7 @@
       {
         "label": "Start React Native Metro",
         "type": "shell",
-        "command": "cd /workspace/fe-react-native && npm start",
+        "command": "cd /workspace/fe-react-native && npm start -- --tunnel --clear",
         "isBackground": true,
         "presentation": { "group": "artwork-platform", "panel": "new", "label": "Metro Bundler" }
       },
