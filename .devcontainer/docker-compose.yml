@@ -6,6 +6,7 @@ services:
     #   dockerfile: Dockerfile
     volumes:
       - ..:/workspace:cached
+      - be_nestjs_node_modules:/workspace/be-nestjs/node_modules
     command: /bin/sh -c "while sleep 1000; do :; done"
     ports:
       - "3001:3001"
@@ -51,3 +52,4 @@ networks:
 volumes:
   postgres_data:
   minio_data:
+  be_nestjs_node_modules:

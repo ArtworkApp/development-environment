@@ -34,5 +34,5 @@
     "9000": { "label": "MinIO S3 API Endpoint" },
     "9001": { "label": "MinIO Admin Web Dashboard" }
   },
-  "postCreateCommand": "sudo npm install -g @nestjs/cli && npm cache clean --force"
+  "postCreateCommand": "sudo npm install -g @nestjs/cli && npm cache clean --force && sudo chown -R vscode:vscode /workspace/be-nestjs/node_modules && cd /workspace/be-nestjs && npm ci && npm run prisma:generate"
 }
