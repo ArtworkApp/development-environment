@@ -34,5 +34,5 @@
     "9000": { "label": "MinIO S3 API Endpoint" },
     "9001": { "label": "MinIO Admin Web Dashboard" }
   },
-  "postCreateCommand": "sudo npm install -g @nestjs/cli && npm cache clean --force && sudo chown -R vscode:vscode /workspace/be-nestjs/node_modules && cd /workspace/be-nestjs && npm ci && npm run prisma:generate"
+  "postCreateCommand": "sudo npm install -g @nestjs/cli && npm cache clean --force && sudo chown -R vscode:vscode /workspace/be-nestjs/node_modules /workspace/fe-nextjs/node_modules /workspace/fe-react-native/node_modules && cd /workspace/be-nestjs && npm ci && npm run prisma:generate && cd /workspace/fe-nextjs && npm ci && cd /workspace/fe-react-native && npm ci"
 }

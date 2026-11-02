@@ -7,6 +7,8 @@ services:
     volumes:
       - ..:/workspace:cached
       - be_nestjs_node_modules:/workspace/be-nestjs/node_modules
+      - fe_nextjs_node_modules:/workspace/fe-nextjs/node_modules
+      - fe_react_native_node_modules:/workspace/fe-react-native/node_modules
     command: /bin/sh -c "while sleep 1000; do :; done"
     ports:
       - "3001:3001"
@@ -53,3 +55,5 @@ volumes:
   postgres_data:
   minio_data:
   be_nestjs_node_modules:
+  fe_nextjs_node_modules:
+  fe_react_native_node_modules:
