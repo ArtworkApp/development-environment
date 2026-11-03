@@ -41,7 +41,7 @@
       {
         "label": "Start React Native Metro",
         "type": "shell",
-        "command": "cd /workspace/fe-react-native && npm start -- --go --tunnel ngrok --clear",
+        "command": "cd /workspace/fe-react-native && (npx expo whoami > /dev/null 2>&1 || npx expo login --no-browser) && npm start -- --go --tunnel ngrok --clear",
         "isBackground": true,
         "presentation": { "group": "artwork-platform", "panel": "new", "label": "Metro Bundler" }
       },
